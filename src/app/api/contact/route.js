@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
-import connectDB from '../../lib/mongodb';
-import Booking from '../../models/Booking';
+import connectDB from '@/lib/mongodb';
+import Booking from '@/models/Booking';
 import nodemailer from 'nodemailer';
 
 async function sendNotificationEmail(booking) {
