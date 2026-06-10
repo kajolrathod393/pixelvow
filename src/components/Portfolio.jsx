@@ -1,5 +1,6 @@
 'use client';
 import { useState, useEffect, useRef } from 'react';
+import { handleImgError } from '@/lib/imgFallback';
 
 const galleryData = [
   // Wedding
@@ -138,7 +139,7 @@ export default function Portfolio() {
                 className="gallery-item"
                 onClick={() => setLightbox(i)}
               >
-                <img src={item.img} alt={item.title} loading="lazy" />
+                <img src={item.img} alt={item.title} loading="lazy" onError={handleImgError} />
                 <div className="gallery-overlay">
                   <div className="gallery-info">
                     <p className="gallery-cat">{catLabel(item.cat).toUpperCase()}</p>
@@ -159,7 +160,7 @@ export default function Portfolio() {
         >
           <button className="lightbox-close" onClick={() => setLightbox(null)}>✕</button>
           <button className="lb-nav lb-prev" onClick={() => setLightbox((i) => (i - 1 + filtered.length) % filtered.length)}>‹</button>
-          <img className="lightbox-img" src={filtered[lightbox].img} alt={filtered[lightbox].title} />
+          <img className="lightbox-img" src={filtered[lightbox].img} alt={filtered[lightbox].title} onError={handleImgError} />
           <button className="lb-nav lb-next" onClick={() => setLightbox((i) => (i + 1) % filtered.length)}>›</button>
           <div className="lb-meta">
             <p>{catLabel(filtered[lightbox].cat).toUpperCase()} — {filtered[lightbox].title}</p>

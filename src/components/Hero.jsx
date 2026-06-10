@@ -1,6 +1,7 @@
 'use client';
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
+import { handleImgError } from '@/lib/imgFallback';
 
 const slides = [
   { src: 'https://images.unsplash.com/photo-1519741497674-611481863552?w=1600&q=85&fit=crop', alt: 'Wedding', cat: 'wedding' },
@@ -32,7 +33,7 @@ export default function Hero() {
     <section className="hero" id="home">
       {slides.map((s, i) => (
         <div key={i} className={`hero-slide${current === i ? ' active' : ''}`}>
-          <img src={s.src} alt={s.alt} loading={i === 0 ? 'eager' : 'lazy'} />
+          <img src={s.src} alt={s.alt} loading={i === 0 ? 'eager' : 'lazy'} onError={handleImgError} />
           <div className="hero-overlay" />
         </div>
       ))}

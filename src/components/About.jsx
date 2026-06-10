@@ -1,5 +1,6 @@
 'use client';
 import { useEffect, useRef } from 'react';
+import { handleImgError } from '@/lib/imgFallback';
 
 export default function About() {
   const sectionRef = useRef(null);
@@ -26,6 +27,7 @@ export default function About() {
                 src="https://images.unsplash.com/photo-1537633552985-df8429e8048b?w=700&q=80&fit=crop"
                 alt="Manish Khatri — Photographer"
                 loading="lazy"
+                onError={handleImgError}
               />
             </div>
             <div className="about-img2">
@@ -33,6 +35,7 @@ export default function About() {
                 src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=500&q=80&fit=crop"
                 alt="Camera"
                 loading="lazy"
+                onError={handleImgError}
               />
             </div>
           </div>
